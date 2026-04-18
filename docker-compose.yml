@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  ipaudio:
+    build: .
+    container_name: ipaudio_app
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
