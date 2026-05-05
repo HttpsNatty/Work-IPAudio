@@ -1,0 +1,20 @@
+{
+    "version": 2,
+    "name": "work-ip-audio-riei",
+    "builds": [
+        {
+            "src": "frontend/**/*",
+            "use": "@vercel/static"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/",
+            "dest": "/index.html"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/$1"
+        }
+    ]
+}
