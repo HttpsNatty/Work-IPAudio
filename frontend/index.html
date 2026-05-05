@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +8,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+    <button id="theme-toggle" class="theme-toggle" aria-label="Alternar tema">
+        <span id="theme-icon">
+            <!-- Sun icon (default - tema claro) -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4"></circle>
+                <path
+                    d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41">
+                </path>
+            </svg>
+        </span>
+    </button>
     <div class="background-elements">
         <div class="orb orb-1"></div>
         <div class="orb orb-2"></div>
     </div>
-    
+
     <div class="container">
         <header>
             <h1>IPAudio</h1>
@@ -22,7 +36,13 @@
         <main class="glass-panel">
             <div id="dropzone" class="dropzone">
                 <div class="dropzone-content">
-                    <svg class="upload-icon" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                    <svg class="upload-icon" xmlns="http://www.w3.org/2000/svg" width="40" height="40"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
                     <h2>Drag & Drop your audio file here</h2>
                     <p>or click to browse (.opus, .mp3, .wav, .ogg - max 10MB)</p>
                     <input type="file" id="file-input" accept="audio/*" hidden>
@@ -51,18 +71,29 @@
                     <div class="actions">
                         <span id="copy-feedback" class="feedback-msg hidden">Copied!</span>
                         <button id="copy-btn" class="action-btn" title="Copy to clipboard">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
                             <span>Copy</span>
                         </button>
                     </div>
                 </div>
                 <!-- Spellcheck false because IPA strings get marked as misspelled -->
-                <textarea id="transcription-text" spellcheck="false" placeholder="Your transcription will appear here... you can edit it freely."></textarea>
+                <textarea id="transcription-text" spellcheck="false"
+                    placeholder="Your transcription will appear here... you can edit it freely."></textarea>
                 <div id="duration-info" class="meta-info hidden"></div>
             </div>
         </main>
     </div>
 
     <script src="script.js"></script>
+    <footer id="footer">
+        Desenvolvido por
+        <a href="https://github.com/HttpsNatty" target="_blank">Natty</a>
+    </footer>
 </body>
+
 </html>
