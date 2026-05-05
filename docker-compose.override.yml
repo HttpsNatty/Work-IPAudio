@@ -1,0 +1,8 @@
+services:
+  ipaudio:
+    volumes:
+      - ./backend:/app/backend
+      - ./frontend:/app/frontend
+      - ./ipa-whisper-base:/app/ipa-whisper-base
+    command: uvicorn backend.app:app --host 0.0.0.0 --port 8000 --reload
+    tty: true
