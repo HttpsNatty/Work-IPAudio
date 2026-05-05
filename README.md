@@ -1,62 +1,81 @@
+docker-compose up --build
 # 🚀 IPA — Transcrição fonética automática
 
-Uma aplicação leve com backend em Python (Flask) e frontend estático para converter áudio em transcrição fonética (IPA). Ideal para testes locais com um modelo embarcado em `ipa-whisper-base`.
+Aplicação leve com backend em Python (Flask) e frontend estático para converter áudio em transcrição fonética (IPA). O site está publicado em: https://work-ip-audio-riei.vercel.app
 
-## ✨ Funcionalidades
+**Demo (produzido no Vercel):** https://work-ip-audio-riei.vercel.app
 
-- **Transcrição em IPA**: Converte áudio (.wav, .mp3, .ogg, .opus) em símbolos fonéticos.
-- **Upload e reprodução**: Drag & drop ou seleção de arquivo, com player embutido.
-- **Processamento local**: Integração com o modelo presente em `ipa-whisper-base/` (atenção ao tamanho dos pesos).
-- **Interface moderna**: UI responsiva com tema escuro e feedback visual.
-- **Docker-ready**: `docker-compose.yml` e `docker-compose.override.yml` prontos para desenvolvimento.
+## Sobre
 
-## 🛠️ Instalação
+Este repositório contém o backend (`backend/`), o frontend estático (`frontend/`) e um modelo local em `ipa-whisper-base/`. O README foi atualizado para facilitar execução local e publicação no Vercel.
 
-1. Clone este repositório:
+## Rápido — executar localmente
 
-```bash
-git clone https://github.com/HttpsNatty/Work-IPAudio.git
-cd Work-IPAudio
-```
+- Requisitos: Docker (recomendado) ou Python 3.9+ e pip.
 
-2. (Opcional) Usando Docker:
+1) Usando Docker (recomendado):
 
 ```bash
 docker-compose up --build
 ```
 
-3. (Opcional) Rodando local sem Docker:
+2) Sem Docker (modo desenvolvedor):
 
 ```bash
 python -m venv .venv
-.venv\\Scripts\\activate    # Windows
-source .venv/bin/activate     # macOS / Linux
+.venv\Scripts\activate    # Windows
+source .venv/bin/activate  # macOS / Linux
 pip install -r backend/requirements.txt
-cd backend && python app.py
+cd backend
+python app.py
 ```
 
-Abra o frontend em `http://localhost:3000` ou sirva `frontend/` estaticamente.
+Para o frontend estático, você pode abrir `frontend/index.html` diretamente ou servir a pasta:
 
-## ⚙️ Configuração
+```bash
+cd frontend
+python -m http.server 8000
+# Abra http://localhost:8000
+```
 
-- Ajuste parâmetros e chaves (se houver) no `backend/` conforme necessário.
-- `ipa-whisper-base/` contém os arquivos do modelo; para repositórios públicos prefira armazenar pesos em LFS ou storage externo.
+## Deploy no Vercel
 
-> [!IMPORTANT]
-> Verifique se `backend/requirements.txt` está instalado e se tem espaço suficiente para o modelo local.
+Recomendação: publicar o frontend estático no Vercel (mais simples) e manter o backend em um serviço de backend (Render, Railway, Heroku) se for necessário manter estado ou usar modelos pesados.
 
-## 📖 Como usar
+Opção A — Deploy apenas do frontend (rápido):
 
-1. Abra a UI em seu navegador.
-2. Faça upload do arquivo de áudio via drag & drop ou clicando na área de upload.
-3. Aguarde o processamento — a transcrição em IPA aparecerá na área de resultados.
-4. Use o botão de copiar para exportar a transcrição.
+1. Instale o CLI do Vercel: `npm i -g vercel`.
+2. No root do projeto ou dentro de `frontend/`, execute:
 
-## 🎨 Personalização
+```bash
+cd frontend
+vercel --prod --name work-ip-audio-riei
+```
 
-- Troque cores no `frontend/style.css` para adaptar a paleta.
-- Se quiser trocar o modelo, substitua os arquivos em `ipa-whisper-base/` e ajuste `backend` conforme necessário.
+3. Confirme as opções sugeridas pelo CLI (diretório público = `.`). Após o deploy, o site estará em `https://work-ip-audio-riei.vercel.app`.
+
+Opção B — Backend + Frontend no Vercel (avançado):
+
+- O Vercel tem suporte a Serverless Functions, mas empacotar um modelo grande (como em `ipa-whisper-base/`) geralmente não é viável em funções serverless.
+- Se desejar, coloque apenas rotinas leves no `api/` do Vercel e mantenha o modelo em um provider com mais recursos.
+
+## Estrutura do repositório
+
+- `backend/` — Flask app e dependências (`requirements.txt`).
+- `frontend/` — HTML, CSS e JS estáticos.
+- `ipa-whisper-base/` — arquivos do modelo local (pesados).
+- `docker-compose.yml` / `docker-compose.override.yml` — orquestração local.
+
+## Notas importantes
+
+- O diretório `ipa-whisper-base/` contém pesos grandes — não os envie a repositórios públicos sem usar LFS ou storage externo.
+- Não execute push automático: mantenha controle sobre pushes de grandes arquivos.
+
+## Contribuição
+
+- Abra uma issue para discutir mudanças.
+- Para alterar README ou documentação, crie uma branch e envie um PR.
 
 ---
 
-*Desenvolvido por Natty com objetivo de aumentar a produtividade.*
+**Desenvolvido por Natty**
